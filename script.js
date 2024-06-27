@@ -22,12 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     LastButton.addEventListener('click', () => {
         new_value = parseInt(number_input.value) - 1;
+        new_value = max(new_value, 1)
         number_input.value = new_value
         fetchCSV(new_value);
     });
 
     NextButton.addEventListener('click', () => {
         new_value = parseInt(number_input.value) + 1;
+        new_value = min(new_value, 84)
         number_input.value = new_value
         fetchCSV(new_value);
     });
