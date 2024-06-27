@@ -33,5 +33,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Initial fetch
-    fetchCSV();
+    fetchCSV(1);
 });
