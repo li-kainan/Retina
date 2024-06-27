@@ -4,7 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const NextButton = document.getElementById('next-button');
 
     const fetchCSV = (value_in) => {
-        const fileName = 'csv/${value_in}.csv';
+        fileName_path = ['csv/', value_in.toString(), '.csv']
+        var fileName = fileName_path.join('');
+        console.log(fileName)
         fetch(fileName)
             .then(response => response.text())
             .then(data => {
@@ -21,14 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
     LastButton.addEventListener('click', () => {
         new_value = parseInt(number_input.value) - 1;
         number_input.value = new_value
-        console.log(new_value)
         fetchCSV(new_value);
     });
 
     NextButton.addEventListener('click', () => {
         new_value = parseInt(number_input.value) + 1;
         number_input.value = new_value
-        console.log(new_value)
         fetchCSV(new_value);
     });
 
