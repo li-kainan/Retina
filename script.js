@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const input = document.getElementById('number-input');
+    const number_input = document.getElementById('number-input');
     const LastButton = document.getElementById('last-button');
     const NextButton = document.getElementById('next-button');
 
@@ -19,14 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     LastButton.addEventListener('click', () => {
-        new_value = parseInt(input.value) - 1;
-        input.value = new_value
+        new_value = parseInt(number_input.value) - 1;
+        number_input.value = new_value
+        console.log(new_value)
         fetchCSV(new_value);
     });
 
     NextButton.addEventListener('click', () => {
-        new_value = parseInt(input.value) + 1;
-        input.value = new_value
+        new_value = parseInt(number_input.value) + 1;
+        number_input.value = new_value
+        console.log(new_value)
         fetchCSV(new_value);
     });
 
