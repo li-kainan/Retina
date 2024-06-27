@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const number_input = document.getElementById('number-input');
+    const ShowButton = document.getElementById('show-button');
     const LastButton = document.getElementById('last-button');
     const NextButton = document.getElementById('next-button');
 
@@ -20,6 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     };
 
+    ShowButton.addEventListener('click', () => {
+        value_in = parseInt(number_input.value)
+        fetchCSV(value_in);
+    });
+    
     LastButton.addEventListener('click', () => {
         new_value = parseInt(number_input.value) - 1;
         new_value = max(new_value, 1)
@@ -35,5 +41,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Initial fetch
-    fetchCSV(1);
+    fetchCSV(parseInt(number_input.value));
 });
