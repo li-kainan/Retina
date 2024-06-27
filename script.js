@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const NextButton = document.getElementById('next-button');
 
     const fetchCSV = () => {
-        const fileName = 'csv/${input.value}.csv';
+        #const fileName = 'csv/${input.value}.csv';
+        const fileName = 'csv/1.csv';
         fetch(fileName)
             .then(response => response.json())
             .then(data => {
