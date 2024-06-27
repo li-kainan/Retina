@@ -6,22 +6,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const fetchCSV = () => {
         const fileName = 'csv/1.csv';
         fetch(fileName)
-            .then(response => response.json())
-            .then(data => {
-                const csvFilename = data.filename;
-                return fetch(csvFilename);
-            })
             .then(response => response.text())
-            .then(csvData => {
-                Papa.parse(csvData, {
+            .then(data => {
+                Papa.parse(data, {
                     header: true,
                     dynamicTyping: true,
                     complete: function(results) {
-                        console.log(results.data);
+                        console.log(results);
                     }
                 });
-            })
-            .catch(error => console.error('Error fetching the CSV file:', error));
+            });
     };
 
     LastButton.addEventListener('click', () => {
