@@ -161,6 +161,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const canvas = document.getElementById("retina");
     const ctx = canvas.getContext("2d");
+
+    const image = new Image();
+    image.src = 'image/1.png';
+
+    image.onload = () => {
+        // Draw the image onto the imageCanvas
+        ctx.drawImage(image, 0, 0, imageCanvas.width, imageCanvas.height);
+    };
     
     // Define a new path
     ctx.beginPath();
