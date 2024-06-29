@@ -128,12 +128,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const Canvas = document.getElementById('chart')
         const Chart = Canvas.getContext('2d');
-        const Image = new Image();
-        Image.src = ImageName;
+        const RetinaImage = new Image();
+        RetinaImage.src = ImageName;
         
-        Image.onload = () => {
+        RetinaImage.onload = () => {
             // Draw the image onto the imageCanvas
-            Chart.drawImage(Image, 0, 0, Canvas.width, Canvas.height);
+            Chart.drawImage(RetinaImage, 0, 0, Canvas.width, Canvas.height);
             drawLines();
         };
     }
