@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
     var ChartConfig
     var LineChart
     
-    const fetch_CSV = (ValueIn) => {
+    const fetch_CSV = () => {
+        ValueIn = parseInt(NumberInput.value)
+        
         fileName_path = ['csv/', ValueIn.toString(), '.csv']
         var fileName = fileName_path.join('');
         console.log(fileName)
@@ -127,24 +129,23 @@ document.addEventListener('DOMContentLoaded', () => {
     
         
     ShowButton.addEventListener('click', () => {
-        ValueIn = parseInt(NumberInput.value)
-        fetch_CSV(ValueIn)
+        fetch_CSV()
     });
     
     LastButton.addEventListener('click', () => {
         new_value = parseInt(NumberInput.value) - 1;
         new_value = Math.max(new_value, 1)
         NumberInput.value = new_value
-        fetch_CSV(new_value)
+        fetch_CSV()
     });
 
     NextButton.addEventListener('click', () => {
         new_value = parseInt(NumberInput.value) + 1;
         new_value = Math.min(new_value, 84)
         NumberInput.value = new_value
-        fetch_CSV(new_value)
+        fetch_CSV()
     });
 
     // Initial fetch
-    fetch_CSV(ValueIn)
+    fetch_CSV()
 });
