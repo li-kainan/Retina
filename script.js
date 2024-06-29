@@ -86,7 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     };
-
+    
+    const ctx = document.getElementById('chart').getContext('2d');
     const lineChart = new Chart(ctx, config);
     
 });
