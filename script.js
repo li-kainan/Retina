@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const update_Chart = () => {
         if (LineChart) {
             LineChart.destroy();
-            LineChart = Null;
+            LineChart = null;
         }
         const chart = document.getElementById('chart').getContext('2d');
         LineChart = new Chart(chart, ChartConfig);
@@ -93,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const NumberInput = document.getElementById('number-input');
         ValueIn = parseInt(NumberInput.value)
         fetch_CSV(ValueIn);
+        consolg.log('ABCD!')
         get_ChartData();
         get_ChartConfig();
         update_Chart();
