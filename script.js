@@ -90,20 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     tooltip: {
                         enabled: false
                     },
-                    annotation: {
-                        annotations: {
-                            imageAnnotation: {
-                                type: 'image',
-                                src: ['image/', ValueIn.toString(), '.tif'].join(''),
-                                xValue: 0,
-                                yValue: 0,
-                                width: 914,
-                                height: 664,
-                                borderColor: 'rgb(0, 255, 0)',
-                                borderWidth: 0
-                            }
-                        }
-                    },
                 },
                 annimation: false
             },
