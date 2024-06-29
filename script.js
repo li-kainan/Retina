@@ -98,14 +98,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     LastButton.addEventListener('click', () => {
-        new_value = parseInt(number_input.value) - 1;
+        new_value = parseInt(NumberInput.value) - 1;
         new_value = Math.max(new_value, 1)
         NumberInput.value = new_value
         update()
     });
 
     NextButton.addEventListener('click', () => {
-        new_value = parseInt(number_input.value) + 1;
+        new_value = parseInt(NumberInput.value) + 1;
         new_value = Math.min(new_value, 84)
         NumberInput.value = new_value
         update()
