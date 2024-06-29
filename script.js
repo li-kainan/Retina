@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ShowButton = document.getElementById('show-button');
     const LastButton = document.getElementById('last-button');
     const NextButton = document.getElementById('next-button');
-    var value_in
+    var value_in = 1
     var CSV_data
     var chart_data
     var chart_config
