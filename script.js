@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     },
                 },
-                annimation: false
+                animation: false
             },
         };
     }
