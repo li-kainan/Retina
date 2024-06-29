@@ -168,18 +168,22 @@ document.addEventListener('DOMContentLoaded', () => {
     image.onload = () => {
         // Draw the image onto the imageCanvas
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+        drawLines();
     };
-    
-    // Define a new path
-    ctx.beginPath();
-    
-    // Set a start-point
-    ctx.moveTo(0,0);
-    
-    // Set an end-point
-    ctx.lineTo(200,100);
-    
-    // Draw it
-    ctx.stroke();
+
+    function drawLines() {
+        // Define a new path
+        ctx.beginPath();
+        
+        // Set a start-point
+        ctx.moveTo(0,0);
+        
+        // Set an end-point
+        ctx.lineTo(200,100);
+        
+        // Draw it
+        ctx.stroke();
+    }
+
     
 });
