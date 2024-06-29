@@ -89,8 +89,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 beforeDraw: (chart) => {
                     if (backgroundImage.complete) {
                         const ctx = chart.ctx;
-                        const { top, left, width, height } = chart.chartArea;
-                        ctx.drawImage(backgroundImage, left, top, width, height);
+                        const {top, left, width, height} = chart.chartArea;
+                        const x = left + width / 2 - image.width / 2;
+                        const y = top + height / 2 - image.height / 2;
+                        ctx.drawImage(backgroundImage, x, y);
                     } else {
                         backgroundImage.onload = () => chart.draw();
                     }
