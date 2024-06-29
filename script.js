@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     header: true,
                     dynamicTyping: true,
                     complete: function(results) {
-                        console.log(results);
                         CSV_data = results
                     }
                 });
@@ -30,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ShowButton.addEventListener('click', () => {
         value_in = parseInt(number_input.value)
         fetchCSV(value_in);
-        console.log(CSV_data);
     });
     
     LastButton.addEventListener('click', () => {
