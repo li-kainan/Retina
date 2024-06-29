@@ -55,6 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const get_ChartConfig = (ChartData) => {
+        const backgroundImage = new Image();
+        image_path = ['image/', ValueIn.toString(), '.tif']
+        backgroundImage.src = image_path.join('');
+        
         ChartConfig = {
             type: 'line',
             data: ChartData,
@@ -86,9 +90,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 },
                 animation: false
-            }
+            },
+            plugins: [{
+                beforeDraw: (chart) => {
+                    if (backgroundImage.complete) {
+                        const ctx = chart.ctx;
+                        const { top, left, width, height } = chart.chartArea;
+                        ctx.drawImage(backgroundImage, left, top, width, height);
+                    } else {
+                        backgroundImage.onload = () => chart.draw();
+                    }
+                }
+            }]
         };
-
+        
         return ChartConfig;
     }
 
