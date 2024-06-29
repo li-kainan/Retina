@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext("2d");
 
     const image = new Image();
-    image.src = 'image/1.png';
+    image.src = 'image/1.tif';
 
     image.onload = () => {
         // Draw the image onto the imageCanvas
@@ -172,16 +172,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     function drawLines() {
-        // Define a new path
         ctx.beginPath();
-        
-        // Set a start-point
         ctx.moveTo(0,0);
-        
-        // Set an end-point
         ctx.lineTo(200,100);
-        
-        // Draw it
+        ctx.lineTo(200,200);
+        ctx.closePath();
+        ctx.strokeStyle = 'red';
         ctx.stroke();
     }
 
