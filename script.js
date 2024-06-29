@@ -13,6 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
         fileName_path = ['csv/', ValueIn.toString(), '.csv']
         var fileName = fileName_path.join('');
         console.log(fileName)
+        
+        image_path = ['image/', ValueIn.toString(), '.tif']
+        var ImageName = image_path.join('');
+        console.log(ImageName)
+        
         fetch(fileName)
             .then(response => response.text())
             .then(data => {
@@ -21,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     dynamicTyping: true,
                     complete: function(results) {
                         CSVData = results
-                        update(CSVData)
+                        update()
                     }
                 });
             });
@@ -111,11 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         LineChart = new Chart(chart, ChartConfig);
     }
     
-    const update = (CSVData) => {
-        ValueIn = parseInt(NumberInput.value)
-        image_path = ['image/', ValueIn.toString(), '.tif']
-        var ImageName = image_path.join('');
-        
+    const update = () => {
         console.log(CSVData)
         get_ChartData();
         console.log(ChartData)
