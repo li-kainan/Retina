@@ -28,6 +28,21 @@ document.addEventListener('DOMContentLoaded', () => {
         
         for (let i = 0; i < CSV_data.data.length; i++) {
             chart_data.labels.push(CSV_data.data[i]['x'])
+
+            for (let j = 1; j < 11; j++) {
+                var label = 'L' + j.toString()
+                if (i == 0) {
+                    chart_data.datasets.push(
+                        {
+                            label: label,
+                            borderColor: 'rgb(255, 99, 132)',
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            data: []
+                        }
+                    )
+                }
+                chart_data.datasets[j-1].data.push(CSV_data.data[i][label])
+            }
         }
 
         console.log(chart_data)
@@ -79,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         type: 'line',
         data: data,
         options: {
-            responsive: false,
+            responsive: true,
             scales: {
                 x: {
                     display: true,
