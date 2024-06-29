@@ -40,6 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             label: label,
                             borderColor: 'rgb(255, 99, 132)',
                             backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            pointRadius: 0,
+                            pointHoverRadius: 0,
                             data: []
                         }
                     )
@@ -72,6 +74,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             text: 'y'
                         }
                     }
+                }
+                plugins: {
+                    tooltip: {
+                        enabled: false
+                    },
                 }
             }
         };
