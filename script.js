@@ -88,7 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const chart = document.getElementById('chart').getContext('2d');
         LineChart = new Chart(chart, ChartConfig);
     }
-    
+
+    /*
     const update = () => {
         const NumberInput = document.getElementById('number-input');
         ValueIn = parseInt(NumberInput.value)
@@ -97,7 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
         get_ChartConfig();
         update_Chart();
     }
-
+    */
+    
     const update = () => {
         const NumberInput = document.getElementById('number-input');
         ValueIn = parseInt(NumberInput.value)
