@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 responsive: false,
                 scales: {
                     x: {
-                        display: true,
+                        display: false,
                         title: {
                             display: true,
                             text: 'x'
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         max: 913
                     },
                     y: {
-                        display: true,
+                        display: false,
                         reverse: true,
                         title: {
                             display: true,
@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial fetch
     fetch_CSV()
 
-    const canvas = document.getElementById("retina");
+    const canvas = document.getElementById("chart");
     const ctx = canvas.getContext("2d");
 
     const image = new Image();
