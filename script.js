@@ -174,6 +174,9 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch_CSV()
 
     function drawLines() {
+        var Canvas = document.getElementById('chart')
+        var RetinaChart = Canvas.getContext('2d');
+        
         RetinaChart.beginPath();
         RetinaChart.moveTo(0,0);
         RetinaChart.lineTo(200,100);
