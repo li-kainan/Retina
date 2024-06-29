@@ -172,13 +172,13 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch_CSV()
 
     function drawLines() {
-        ctx.beginPath();
-        ctx.moveTo(0,0);
-        ctx.lineTo(200,100);
-        ctx.lineTo(200,200);
-        ctx.closePath();
-        ctx.strokeStyle = 'red';
-        ctx.stroke();
+        chart.beginPath();
+        chart.moveTo(0,0);
+        chart.lineTo(200,100);
+        chart.lineTo(200,200);
+        chart.closePath();
+        chart.strokeStyle = 'red';
+        chart.stroke();
     }
 
     
