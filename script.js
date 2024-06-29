@@ -3,9 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const ShowButton = document.getElementById('show-button');
     const LastButton = document.getElementById('last-button');
     const NextButton = document.getElementById('next-button');
+    var value_in
     var CSV_data
+    var chart_data
+    var chart_config
 
-    const fetchCSV = (value_in) => {
+    const fetchCSV = () => {
         fileName_path = ['csv/', value_in.toString(), '.csv']
         var fileName = fileName_path.join('');
         console.log(fileName)
@@ -23,8 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     };
 
-    const compile_chart_data = (CSV_data) => {
-        const chart_data = {labels: [], datasets: []};
+    const get_chart_data = () => {
+        chart_data = {labels: [], datasets: []};
         
         for (let i = 0; i < CSV_data.data.length; i++) {
             chart_data.labels.push(CSV_data.data[i]['x'])
@@ -48,73 +51,63 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(chart_data)
     }
 
-    const updateScatterPlot = (csvData) => {
-        
+    const get_chart_config = () => {
+        chart_config = {
+            type: 'line',
+            data: chart_data,
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'x'
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'y'
+                        }
+                    }
+                }
+            }
+        };
+    }
+
+    const updateChart = () => {
+        const chart = document.getElementById('chart').getContext('2d');
+        const lineChart = new Chart(chart, chart_config);
+    }
+    
+    const update = () => {
+        value_in = parseInt(number_input.value)
+        fetchCSV();
+        get_chart_data();
+        get_chart_config();
+        updateChart();
     }
         
     ShowButton.addEventListener('click', () => {
-        value_in = parseInt(number_input.value)
-        fetchCSV(value_in);
-        compile_chart_data(CSV_data);
+        update()
     });
     
     LastButton.addEventListener('click', () => {
         new_value = parseInt(number_input.value) - 1;
         new_value = Math.max(new_value, 1)
         number_input.value = new_value
-        fetchCSV(new_value);
+        update()
     });
 
     NextButton.addEventListener('click', () => {
         new_value = parseInt(number_input.value) + 1;
         new_value = Math.min(new_value, 84)
         number_input.value = new_value
-        fetchCSV(new_value);
+        update()
     });
 
     // Initial fetch
-    fetchCSV(parseInt(number_input.value));
-
-    const data = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [{
-            label: 'Dataset 1',
-            borderColor: 'rgb(255, 99, 132)',
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            data: [65, 59, 80, 81, 56, 55, 40]
-        }, {
-            label: 'Dataset 2',
-            borderColor: 'rgb(54, 162, 235)',
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            data: [28, 48, 40, 19, 86, 27, 90]
-        }]
-    };
-
-    const config = {
-        type: 'line',
-        data: data,
-        options: {
-            responsive: true,
-            scales: {
-                x: {
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'Month'
-                    }
-                },
-                y: {
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'Value'
-                    }
-                }
-            }
-        }
-    };
-    
-    const ctx = document.getElementById('chart').getContext('2d');
-    const lineChart = new Chart(ctx, config);
-    
+    update()
 });
