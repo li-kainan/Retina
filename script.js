@@ -81,23 +81,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 plugins: {
                     tooltip: {
                         enabled: false
-                    }
+                    },
+                    annotation: {
+                        annotations: {
+                            imageAnnotation: {
+                                type: 'image',
+                                src: ImageName, // Replace with the path to your image
+                                xValue: 0, // X-axis value
+                                yValue: 664, // Y-axis value
+                                width: 914,
+                                height: 664,
+                                borderColor: 'rgb(0, 255, 0)',
+                                borderWidth: 0
+                            }
+                        }
+                    },
                 },
                 animation: false
             },
-            plugins: [{
-                beforeDraw: (chart) => {
-                    if (backgroundImage.complete) {
-                        const ctx = chart.ctx;
-                        const {top, left, width, height} = chart.chartArea;
-                        const x = left + width / 2 - image.width / 2;
-                        const y = top + height / 2 - image.height / 2;
-                        ctx.drawImage(backgroundImage, x, y);
-                    } else {
-                        backgroundImage.onload = () => chart.draw();
-                    }
-                }
-            }]
         };
     }
 
@@ -111,17 +112,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     const update = (CSVData) => {
-        const backgroundImage = new Image();
+        ValueIn = parseInt(NumberInput.value)
         image_path = ['image/', ValueIn.toString(), '.tif']
-        backgroundImage.src = image_path.join('');
+        var ImageName = image_path.join('');
         
         console.log(CSVData)
         get_ChartData();
         console.log(ChartData)
         get_ChartConfig();
         console.log(ChartConfig)
-        //update_Chart();
-        backgroundImage.onload = update_Chart;
+        update_Chart();
     }
     
         
