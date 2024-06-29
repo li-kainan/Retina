@@ -1,15 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const number_input = document.getElementById('number-input');
+    const NumberInput = document.getElementById('number-input');
     const ShowButton = document.getElementById('show-button');
     const LastButton = document.getElementById('last-button');
     const NextButton = document.getElementById('next-button');
-    var value_in = 1
-    var CSV_data
-    var chart_data
-    var chart_config
+    var ValueIn = 1
+    var CSVData
+    var ChartData
+    var ChartConfig
 
-    const fetchCSV = () => {
-        fileName_path = ['csv/', value_in.toString(), '.csv']
+    const fetchCSV = (ValueIn) => {
+        fileName_path = ['csv/', ValueIn.toString(), '.csv']
         var fileName = fileName_path.join('');
         console.log(fileName)
         fetch(fileName)
@@ -26,16 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     };
 
-    const get_chart_data = () => {
-        chart_data = {labels: [], datasets: []};
+    const get_ChartData = () => {
+        ChartData = {labels: [], datasets: []};
         
-        for (let i = 0; i < CSV_data.data.length; i++) {
-            chart_data.labels.push(CSV_data.data[i]['x'])
+        for (let i = 0; i < CSVData.data.length; i++) {
+            ChartData.labels.push(CSVData.data[i]['x'])
 
             for (let j = 1; j < 11; j++) {
                 var label = 'L' + j.toString()
                 if (i == 0) {
-                    chart_data.datasets.push(
+                    ChartData.datasets.push(
                         {
                             label: label,
                             borderColor: 'rgb(255, 99, 132)',
@@ -46,17 +46,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     )
                 }
-                chart_data.datasets[j-1].data.push(CSV_data.data[i][label])
+                ChartData.datasets[j-1].data.push(CSVData.data[i][label])
             }
         }
 
-        console.log(chart_data)
+        console.log(ChartData)
     }
 
-    const get_chart_config = () => {
-        chart_config = {
+    const get_ChartConfig = () => {
+        ChartConfig = {
             type: 'line',
-            data: chart_data,
+            data: ChartData,
             options: {
                 responsive: true,
                 scales: {
@@ -81,12 +81,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const updateChart = () => {
         const chart = document.getElementById('chart').getContext('2d');
-        const lineChart = new Chart(chart, chart_config);
+        const lineChart = new Chart(chart, ChartConfig);
     }
     
     const update = () => {
-        value_in = parseInt(number_input.value)
-        fetchCSV();
+        const NumberInput = document.getElementById('number-input');
+        ValueIn = parseInt(NumberInput.value)
+        fetchCSV(ValueIn);
         get_chart_data();
         get_chart_config();
         updateChart();
@@ -99,14 +100,14 @@ document.addEventListener('DOMContentLoaded', () => {
     LastButton.addEventListener('click', () => {
         new_value = parseInt(number_input.value) - 1;
         new_value = Math.max(new_value, 1)
-        number_input.value = new_value
+        NumberInput.value = new_value
         update()
     });
 
     NextButton.addEventListener('click', () => {
         new_value = parseInt(number_input.value) + 1;
         new_value = Math.min(new_value, 84)
-        number_input.value = new_value
+        NumberInput.value = new_value
         update()
     });
 
