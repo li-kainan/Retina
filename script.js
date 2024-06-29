@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         annotations: {
                             imageAnnotation: {
                                 type: 'label',
-                                content: Utils.getHouse(),
+                                content: img,
                                 xValue: 914/2,
                                 yValue: 664/2,
                                 width: 914,
