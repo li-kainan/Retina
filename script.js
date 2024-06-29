@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         annotations: {
                             imageAnnotation: {
                                 type: 'image',
-                                src: ImageName, // Replace with the path to your image
+                                src: ['image/', ValueIn.toString(), '.tif'].join(''),
                                 xValue: 0, // X-axis value
                                 yValue: 664, // Y-axis value
                                 width: 914,
