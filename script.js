@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     var ChartData
     var ChartConfig
     var LineChart
+    var Canvas
+    var Chart
     
     const fetch_CSV = () => {
         ValueIn = parseInt(NumberInput.value)
@@ -126,6 +128,11 @@ document.addEventListener('DOMContentLoaded', () => {
         var ImageName = image_path.join('');
         console.log(ImageName)
 
+        if (Chart) {
+            Chart.destroy();
+            Chart = null;
+        }
+        
         const Canvas = document.getElementById('chart')
         const Chart = Canvas.getContext('2d');
         const RetinaImage = new Image();
