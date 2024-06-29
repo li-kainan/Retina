@@ -130,6 +130,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         var Canvas = document.getElementById('chart')
         var RetinaChart = Canvas.getContext('2d');
+        RetinaChart.clearRect(0, 0, Canvas.width, Canvas.height);
+        
         const RetinaImage = new Image();
         RetinaImage.src = ImageName;
         
@@ -176,11 +178,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function drawLines() {
         var Canvas = document.getElementById('chart')
         var RetinaChart = Canvas.getContext('2d');
+
+        ValueIn = parseInt(NumberInput.value)
         
         RetinaChart.beginPath();
         RetinaChart.moveTo(0,0);
-        RetinaChart.lineTo(200,100);
-        RetinaChart.lineTo(200,200);
+        RetinaChart.lineTo(100 * (2+ValueIn), 100 * (1+ValueIn));
+        RetinaChart.lineTo(100 * (4+ValueIn), 100 * (2+ValueIn));
         RetinaChart.closePath();
         RetinaChart.strokeStyle = 'red';
         RetinaChart.stroke();
