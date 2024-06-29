@@ -105,13 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     },
                 },
-                transitions: {
-                    active: {
-                        animation: {
-                            duration: 0
-                        }
-                    }
-                }
             },
         };
     }
