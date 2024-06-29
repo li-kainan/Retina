@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ShowButton.addEventListener('click', () => {
         value_in = parseInt(number_input.value)
         fetchCSV(value_in);
-        console.log(results);
         console.log(data);
     });
     
