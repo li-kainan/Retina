@@ -75,11 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
                 }
-                plugins: {
-                    tooltip: {
-                        enabled: false
-                    },
-                }
             }
         };
     }
