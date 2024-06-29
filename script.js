@@ -77,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     },
                     y: {
                         display: true,
+                        reverse: true,
                         title: {
                             display: true,
                             text: 'y'
