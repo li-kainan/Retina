@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ShowButton.addEventListener('click', () => {
         value_in = parseInt(number_input.value)
         fetchCSV(value_in);
+        compile_chart_data(CSV_data);
     });
     
     LastButton.addEventListener('click', () => {
