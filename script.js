@@ -19,8 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     header: true,
                     dynamicTyping: true,
                     complete: function(results) {
-                        CSV_data = results
-                        console.log(CSV_data)
+                        CSVData = results
+                        console.log(CSVData)
                     }
                 });
             });
