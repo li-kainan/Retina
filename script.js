@@ -59,23 +59,33 @@ document.addEventListener('DOMContentLoaded', () => {
             type: 'line',
             data: ChartData,
             options: {
-                responsive: true,
+                responsive: false,
                 scales: {
                     x: {
                         display: true,
                         title: {
                             display: true,
                             text: 'x'
-                        }
+                        },
+                        min: 0,
+                        max: 913
                     },
                     y: {
                         display: true,
                         title: {
                             display: true,
                             text: 'y'
-                        }
+                        },
+                        min: 0,
+                        max: 664
                     }
-                }
+                },
+                plugins: {
+                    tooltip: {
+                        enabled: false
+                    }
+                },
+                animation: false
             }
         };
 
@@ -89,6 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const chart = document.getElementById('chart').getContext('2d');
         LineChart = new Chart(chart, ChartConfig);
+        
+        
     }
     
     const update = (CSVData) => {
