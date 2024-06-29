@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext("2d");
 
     const image = new Image();
-    image.src = 'image/1.tif';
+    image.src = 'image/1.png';
 
     image.onload = () => {
         // Draw the image onto the imageCanvas
