@@ -120,6 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
+        console.log(CSVData)
+        
         ChartData = {labels: [], datasets: []};
         
         for (let i = 0; i < CSVData.data.length; i++) {
@@ -143,6 +145,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        console.log(ChartData)
+        
         ChartConfig = {
             type: 'line',
             data: ChartData,
@@ -167,6 +171,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
+        console.log(ChartConfig)
+        
         if (LineChart) {
             LineChart.destroy();
             LineChart = null;
