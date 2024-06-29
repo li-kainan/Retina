@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     )
                 }
-                ChartData.datasets[j-1].data.push(CSVData.data[i][label])
+                ChartData.datasets[j-1].data.push(664 - CSVData.data[i][label])
             }
         }
 
