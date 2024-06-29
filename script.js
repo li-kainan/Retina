@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ShowButton = document.getElementById('show-button');
     const LastButton = document.getElementById('last-button');
     const NextButton = document.getElementById('next-button');
+    var CSV_data
 
     const fetchCSV = (value_in) => {
         fileName_path = ['csv/', value_in.toString(), '.csv']
@@ -16,15 +17,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     dynamicTyping: true,
                     complete: function(results) {
                         console.log(results);
+                        CSV_data = results
                     }
                 });
             });
     };
 
+    const updateScatterPlot = (csvData) => {
+        
+    }
+        
     ShowButton.addEventListener('click', () => {
         value_in = parseInt(number_input.value)
         fetchCSV(value_in);
-        console.log(data);
+        console.log(CSV_data);
     });
     
     LastButton.addEventListener('click', () => {
