@@ -27,11 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     };
 
-    const get_ChartData = (Data) => {
+    const get_ChartData = () => {
         ChartData = {labels: [], datasets: []};
         
-        for (let i = 0; i < Data.data.length; i++) {
-            ChartData.labels.push(Data.data[i]['x'])
+        for (let i = 0; i < CSVData.data.length; i++) {
+            ChartData.labels.push(CSVData.data[i]['x'])
 
             for (let j = 1; j < 11; j++) {
                 var label = 'L' + j.toString()
@@ -50,15 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 ChartData.datasets[j-1].data.push(664 - CSVData.data[i][label])
             }
         }
-
-        return ChartData;
     }
 
-    const get_ChartConfig = (ChartData) => {
-        const backgroundImage = new Image();
-        image_path = ['image/', ValueIn.toString(), '.tif']
-        backgroundImage.src = image_path.join('');
-        
+    const get_ChartConfig = () => {
         ChartConfig = {
             type: 'line',
             data: ChartData,
@@ -103,32 +97,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }]
         };
-        
-        return ChartConfig;
     }
 
-    const update_Chart = (ChartConfig) => {
+    const update_Chart = () => {
         if (LineChart) {
             LineChart.destroy();
             LineChart = null;
         }
         const chart = document.getElementById('chart').getContext('2d');
         LineChart = new Chart(chart, ChartConfig);
-        
-        
     }
     
     const update = (CSVData) => {
+        const backgroundImage = new Image();
+        image_path = ['image/', ValueIn.toString(), '.tif']
+        backgroundImage.src = image_path.join('');
+        
         console.log(CSVData)
-        get_ChartData(CSVData);
+        get_ChartData();
         console.log(ChartData)
-        get_ChartConfig(ChartData);
+        get_ChartConfig();
         console.log(ChartConfig)
-        update_Chart(ChartConfig);
+        //update_Chart();
+        backgroundImage.onload = update_Chart;
     }
     
         
     ShowButton.addEventListener('click', () => {
+        ValueIn = parseInt(NumberInput.value)
         fetch_CSV(ValueIn)
     });
     
