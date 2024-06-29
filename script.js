@@ -63,6 +63,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const get_ChartConfig = () => {
+        ValueIn = parseInt(NumberInput.value)
+        image_path = ['image/', ValueIn.toString(), '.png']
+        var ImageName = image_path.join('');
+        var img = new Image();
+        img.src = ImageName;
+        
         ChartConfig = {
             type: 'line',
             data: ChartData,
