@@ -16,9 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
         var fileName = fileName_path.join('');
         console.log(fileName)
         
-        image_path = ['image/', ValueIn.toString(), '.tif']
+        image_path = ['image/', ValueIn.toString(), '.png']
         var ImageName = image_path.join('');
         console.log(ImageName)
+        
+        var img = new Image();
+        img.src = ImageName;
         
         fetch(fileName)
             .then(response => response.text())
@@ -93,10 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     annotation: {
                         annotations: {
                             imageAnnotation: {
-                                type: 'image',
-                                src: 'image/1.png',
-                                xValue: 0,
-                                yValue: 0,
+                                type: 'label',
+                                content: img,
+                                xValue: 914/2,
+                                yValue: 664/2,
                                 width: 914,
                                 height: 664,
                                 borderColor: 'rgb(0, 255, 0)',
