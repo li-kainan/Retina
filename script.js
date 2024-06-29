@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     image.onload = () => {
         // Draw the image onto the imageCanvas
-        ctx.drawImage(image, 0, 0, imageCanvas.width, imageCanvas.height);
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     };
     
     // Define a new path
