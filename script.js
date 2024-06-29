@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const NumberInput = document.getElementById('number-input');
         ValueIn = parseInt(NumberInput.value)
         fetch_CSV(ValueIn);
-        consolg.log('ABCD!')
+        console.log('ABCD!')
         get_ChartData();
         get_ChartConfig();
         update_Chart();
