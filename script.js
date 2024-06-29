@@ -127,14 +127,34 @@ document.addEventListener('DOMContentLoaded', () => {
         const chart = document.getElementById('chart').getContext('2d');
         LineChart = new Chart(chart, ChartConfig);
     }
-    
+
+    const drawImage = () => {
+        ValueIn = parseInt(NumberInput.value)
+        image_path = ['image/', ValueIn.toString(), '.png']
+        var ImageName = image_path.join('');
+        console.log(ImageName)
+
+        const Canvas = document.getElementById('chart')
+        const Chart = Canvas.getContext('2d');
+        const Image = new Image();
+        Image.src = ImageName;
+        
+        Image.onload = () => {
+            // Draw the image onto the imageCanvas
+            Chart.drawImage(Image, 0, 0, Canvas.width, Canvas.height);
+            drawLines();
+        };
+    }
     const update = () => {
+        /*
         console.log(CSVData)
         get_ChartData();
         console.log(ChartData)
         get_ChartConfig();
         console.log(ChartConfig)
         update_Chart();
+        */
+        drawImage()
     }
     
         
@@ -158,18 +178,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial fetch
     fetch_CSV()
-
-    const canvas = document.getElementById("chart");
-    const ctx = canvas.getContext("2d");
-
-    const image = new Image();
-    image.src = 'image/1.png';
-
-    image.onload = () => {
-        // Draw the image onto the imageCanvas
-        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-        drawLines();
-    };
 
     function drawLines() {
         ctx.beginPath();
