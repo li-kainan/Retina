@@ -158,4 +158,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial fetch
     fetch_CSV()
+
+    const canvas = document.getElementById("retina");
+    const ctx = canvas.getContext("2d");
+    
+    // Define a new path
+    ctx.beginPath();
+    
+    // Set a start-point
+    ctx.moveTo(0,0);
+    
+    // Set an end-point
+    ctx.lineTo(200,100);
+    
+    // Draw it
+    ctx.stroke();
+    
 });
