@@ -23,6 +23,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     };
 
+    const compile_chart_data = (CSV_data) => {
+        const chart_data = {labels: [], datasets: []};
+        
+        for (let i = 0; i < CSV_data.data.length; i++) {
+            chart_data.labels.push(CSV_data.data[i]['x'])
+        }
+
+        console.log(chart_data)
+    }
+
     const updateScatterPlot = (csvData) => {
         
     }
