@@ -11,19 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const fetch_CSV = () => {
         ValueIn = parseInt(NumberInput.value)
+        FileName_path = ['csv/', ValueIn.toString(), '.csv']
+        var FileName = FileName_path.join('');
+        console.log(FileName)
         
-        fileName_path = ['csv/', ValueIn.toString(), '.csv']
-        var fileName = fileName_path.join('');
-        console.log(fileName)
-        
-        image_path = ['image/', ValueIn.toString(), '.png']
-        var ImageName = image_path.join('');
-        console.log(ImageName)
-        
-        var img = new Image();
-        img.src = ImageName;
-        
-        fetch(fileName)
+        fetch(FileName)
             .then(response => response.text())
             .then(data => {
                 Papa.parse(data, {
