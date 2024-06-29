@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         type: 'line',
         data: data,
         options: {
-            responsive: true,
+            responsive: false,
             scales: {
                 x: {
                     display: true,
