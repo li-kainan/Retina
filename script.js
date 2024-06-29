@@ -47,4 +47,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial fetch
     fetchCSV(parseInt(number_input.value));
+
+    const data = {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+            label: 'Dataset 1',
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            data: [65, 59, 80, 81, 56, 55, 40]
+        }, {
+            label: 'Dataset 2',
+            borderColor: 'rgb(54, 162, 235)',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            data: [28, 48, 40, 19, 86, 27, 90]
+        }]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Month'
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Value'
+                    }
+                }
+            }
+        }
+    };
+
+    const lineChart = new Chart(ctx, config);
+    
 });
