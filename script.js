@@ -127,20 +127,15 @@ document.addEventListener('DOMContentLoaded', () => {
         image_path = ['image/', ValueIn.toString(), '.png']
         var ImageName = image_path.join('');
         console.log(ImageName)
-
-        if (Chart) {
-            Chart.destroy();
-            Chart = null;
-        }
         
-        const Canvas = document.getElementById('chart')
-        const Chart = Canvas.getContext('2d');
+        var Canvas = document.getElementById('chart')
+        var RetinaChart = Canvas.getContext('2d');
         const RetinaImage = new Image();
         RetinaImage.src = ImageName;
         
         RetinaImage.onload = () => {
             // Draw the image onto the imageCanvas
-            Chart.drawImage(RetinaImage, 0, 0, Canvas.width, Canvas.height);
+            RetinaChart.drawImage(RetinaImage, 0, 0, Canvas.width, Canvas.height);
             drawLines();
         };
     }
@@ -179,13 +174,13 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch_CSV()
 
     function drawLines() {
-        Chart.beginPath();
-        Chart.moveTo(0,0);
-        Chart.lineTo(200,100);
-        Chart.lineTo(200,200);
-        Chart.closePath();
-        Chart.strokeStyle = 'red';
-        Chart.stroke();
+        RetinaChart.beginPath();
+        RetinaChart.moveTo(0,0);
+        RetinaChart.lineTo(200,100);
+        RetinaChart.lineTo(200,200);
+        RetinaChart.closePath();
+        RetinaChart.strokeStyle = 'red';
+        RetinaChart.stroke();
     }
 
     
