@@ -9,11 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
     var ChartConfig
     var LineChart
     
-    async fetch_CSV = (ValueIn) => {
+    const fetch_CSV = (ValueIn) => {
         fileName_path = ['csv/', ValueIn.toString(), '.csv']
         var fileName = fileName_path.join('');
         console.log(fileName)
-        await fetch(fileName)
+        fetch(fileName)
             .then(response => response.text())
             .then(data => {
                 Papa.parse(data, {
@@ -21,16 +21,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     dynamicTyping: true,
                     complete: function(results) {
                         CSVData = results
+                        update(CSVData)
                     }
                 });
             });
     };
 
-    const get_ChartData = () => {
+    const get_ChartData = (Data) => {
         ChartData = {labels: [], datasets: []};
         
-        for (let i = 0; i < CSVData.data.length; i++) {
-            ChartData.labels.push(CSVData.data[i]['x'])
+        for (let i = 0; i < Data.data.length; i++) {
+            ChartData.labels.push(Data.data[i]['x'])
 
             for (let j = 1; j < 11; j++) {
                 var label = 'L' + j.toString()
@@ -50,10 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        console.log(ChartData)
+        return ChartData;
     }
 
-    const get_ChartConfig = () => {
+    const get_ChartConfig = (ChartData) => {
         ChartConfig = {
             type: 'line',
             data: ChartData,
@@ -77,9 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         };
+
+        return ChartConfig;
     }
 
-    const update_Chart = () => {
+    const update_Chart = (ChartConfig) => {
         if (LineChart) {
             LineChart.destroy();
             LineChart = null;
@@ -88,37 +91,34 @@ document.addEventListener('DOMContentLoaded', () => {
         LineChart = new Chart(chart, ChartConfig);
     }
     
-    const update = () => {
-        const NumberInput = document.getElementById('number-input');
-        ValueIn = parseInt(NumberInput.value)
-        fetch_CSV(ValueIn);
+    const update = (CSVData) => {
         console.log(CSVData)
-        get_ChartData();
+        get_ChartData(CSVData);
         console.log(ChartData)
-        get_ChartConfig();
+        get_ChartConfig(ChartData);
         console.log(ChartConfig)
-        update_Chart();
+        update_Chart(ChartConfig);
     }
     
         
     ShowButton.addEventListener('click', () => {
-        update()
+        fetch_CSV(ValueIn)
     });
     
     LastButton.addEventListener('click', () => {
         new_value = parseInt(NumberInput.value) - 1;
         new_value = Math.max(new_value, 1)
         NumberInput.value = new_value
-        update()
+        fetch_CSV(new_value)
     });
 
     NextButton.addEventListener('click', () => {
         new_value = parseInt(NumberInput.value) + 1;
         new_value = Math.min(new_value, 84)
         NumberInput.value = new_value
-        update()
+        fetch_CSV(new_value)
     });
 
     // Initial fetch
-    update()
+    fetch_CSV(ValueIn)
 });
