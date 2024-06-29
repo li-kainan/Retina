@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     var ChartData
     var ChartConfig
 
-    const fetchCSV = (ValueIn) => {
+    const fetch_CSV = (ValueIn) => {
         fileName_path = ['csv/', ValueIn.toString(), '.csv']
         var fileName = fileName_path.join('');
         console.log(fileName)
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    const updateChart = () => {
+    const update_Chart = () => {
         const chart = document.getElementById('chart').getContext('2d');
         const lineChart = new Chart(chart, ChartConfig);
     }
@@ -87,10 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const update = () => {
         const NumberInput = document.getElementById('number-input');
         ValueIn = parseInt(NumberInput.value)
-        fetchCSV(ValueIn);
-        get_chart_data();
-        get_chart_config();
-        updateChart();
+        fetch_CSV(ValueIn);
+        get_ChartData();
+        get_ChartConfig();
+        update_Chart();
     }
         
     ShowButton.addEventListener('click', () => {
