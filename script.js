@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     var CSVData
     var ChartData
     var ChartConfig
-    var lineChart
+    var LineChart
     
     const fetch_CSV = (ValueIn) => {
         fileName_path = ['csv/', ValueIn.toString(), '.csv']
@@ -81,12 +81,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const update_Chart = () => {
-        if (lineChart) {
-            lineChart.destroy();
-            lineChart = Null;
+        if (LineChart) {
+            LineChart.destroy();
+            LineChart = Null;
         }
         const chart = document.getElementById('chart').getContext('2d');
-        lineChart = new Chart(chart, ChartConfig);
+        LineChart = new Chart(chart, ChartConfig);
     }
     
     const update = () => {
