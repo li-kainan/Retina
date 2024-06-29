@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fileName_path = ['csv/', ValueIn.toString(), '.csv']
         var fileName = fileName_path.join('');
         console.log(fileName)
-        fetch(fileName)
+        await fetch(fileName)
             .then(response => response.text())
             .then(data => {
                 Papa.parse(data, {
