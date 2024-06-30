@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             Marker_Switch[layer_id] = marker_id
             ToggleButton.innerHTML = "on"
-            OtherButton.style.color = '#FFFFFF'
+            ToggleButton.style.color = '#FFFFFF'
             ToggleButton.style.backgroundColor = '#00A2E8'
         }
         
