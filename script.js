@@ -3,8 +3,15 @@ const ShowButton = document.getElementById('show-button')
 const LastButton = document.getElementById('last-button')
 const NextButton = document.getElementById('next-button')
 const Canvas = document.getElementById('chart')
-const RetinaChart = Canvas.getContext('2d')
+const ImageLayer = Canvas.getContext('2d')
+
+var LineLayer
 var ToggleButton
+var LineLayers = []
+for (let i = 0; i < 10; i++) {
+    LineLayer = Canvas.getContext('2d')
+    LineLayers.push(LineLayer)
+}
 
 var SampleID = 1
 var FileName
@@ -47,28 +54,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function drawLines() {
-        const Canvas = document.getElementById('chart')
-        const RetinaChart = Canvas.getContext('2d')
-        
+    function drawLines(line_id) {
         SampleID = parseInt(NumberInput.value)
         
         for (let i = 0; i < 10; i++) {
-            Marker_ID = Marker_Switch[i]
-            if (Marker_ID >= 0) {
-                LineData = Marker_Data[Marker_ID].data
-                
-                RetinaChart.beginPath()
-                x = LineData[0]['x'] / 914 * Canvas.width
-                y = LineData[0]['L'+(i+1).toString()] / 665 * Canvas.height
-                RetinaChart.moveTo(x, y)
-                for (let j = 1; j < LineData.length; j++) {
-                    x = LineData[j]['x'] / 914 * Canvas.width
-                    y = LineData[j]['L'+(i+1).toString()] / 665 * Canvas.height
-                    RetinaChart.lineTo(x, y)
+            if (line_id == -1 or line_id == i) {
+                ImageLayers[line_id].clearRect(0, 0, Canvas.width, Canvas.height)
+                Marker_ID = Marker_Switch[i]
+                if (Marker_ID >= 0) {
+                    LineData = Marker_Data[Marker_ID].data
+                    
+                    LineLayer.beginPath()
+                    x = LineData[0]['x'] / 914 * Canvas.width
+                    y = LineData[0]['L'+(i+1).toString()] / 665 * Canvas.height
+                    LineLayer.moveTo(x, y)
+                    for (let j = 1; j < LineData.length; j++) {
+                        x = LineData[j]['x'] / 914 * Canvas.width
+                        y = LineData[j]['L'+(i+1).toString()] / 665 * Canvas.height
+                        LineLayer.lineTo(x, y)
+                    }
+                    LineLayer.strokeStyle = LineColors[i]
+                    LineLayer.stroke()
                 }
-                RetinaChart.strokeStyle = LineColors[i]
-                RetinaChart.stroke()
             }
         }
     }
@@ -79,15 +86,15 @@ document.addEventListener('DOMContentLoaded', () => {
         ImageName = Image_Path.join('')
         
         const Canvas = document.getElementById('chart')
-        const RetinaChart = Canvas.getContext('2d')
-        RetinaChart.clearRect(0, 0, Canvas.width, Canvas.height)
+        const ImageLayer = Canvas.getContext('2d')
+        ImageLayer.clearRect(0, 0, Canvas.width, Canvas.height)
         
         var RetinaImage = new Image()
         RetinaImage.src = ImageName
         
         RetinaImage.onload = () => {
-            RetinaChart.drawImage(RetinaImage, 0, 0, Canvas.width, Canvas.height)
-            drawLines()
+            ImageLayer.drawImage(RetinaImage, 0, 0, Canvas.width, Canvas.height)
+            drawLines(-1)
         }
     }
     
@@ -116,8 +123,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial fetch
     update()
 
-    const ToggleSwitch = (marker_id, layer_id) => {
-        ToggleButton = document.getElementById('button_' + marker_id.toString() + layer_id.toString())
+    const ToggleSwitch = (marker_id, line_id) => {
+        ToggleButton = document.getElementById('button_' + marker_id.toString() + line_id.toString())
         
         if (Marker_Switch[layer_id] == marker_id) {
             Marker_Switch[layer_id] = -1
@@ -126,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ToggleButton.style.backgroundColor = '#F0F0F0'
         } else {
             for (let i = 0; i < 3; i++) {
-                OtherButton = document.getElementById('button_' + i.toString() + layer_id.toString())
+                OtherButton = document.getElementById('button_' + i.toString() + line_id.toString())
                 OtherButton.innerHTML = "off"
                 OtherButton.style.color = '#000000'
                 OtherButton.style.backgroundColor = '#F0F0F0'
@@ -138,18 +145,18 @@ document.addEventListener('DOMContentLoaded', () => {
             ToggleButton.style.backgroundColor = '#00A2E8'
         }
         
-        drawImage()
+        drawLines(line_id)
     }
 
     for (let marker_id = 0; marker_id < 3; marker_id++) {
-        for (let layer_id = 0; layer_id < 10; layer_id++) {
-            ToggleButton = document.getElementById('button_' + marker_id.toString() + layer_id.toString())
+        for (let line_id = 0; layer_id < 10; layer_id++) {
+            ToggleButton = document.getElementById('button_' + marker_id.toString() + line_id.toString())
             ToggleButton.innerHTML = "off"
             ToggleButton.style.color = '#000000'
             ToggleButton.style.backgroundColor = '#F0F0F0'
             
             ToggleButton.addEventListener('click', () => {
-                ToggleSwitch(marker_id, layer_id)
+                ToggleSwitch(marker_id, line_id)
             })
         }
     }
