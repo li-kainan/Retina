@@ -14,7 +14,7 @@ var FileName
 var ImageName
 var RetinaImage
 var Marker_ID
-var Marker_Data = []
+var Marker_Data = [null, null, null]
 var Marker_Switch = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
 const LineColors = ['#E6B0AA', '#D7BDE2', '#A9CCE3', '#A3E4D7', '#F9E79F', '#E74C3C', '#8E44AD', '#3498DB', '#2ECC71', '#F39C12']
 var LineData
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const fetch_CSV = () => {
         SampleID = parseInt(NumberInput.value)
-        Marker_Data = []
+        Marker_Data = [null, null, null]
 
         for (let i = 1; i < 4; i++) {
             File_Path = ['csv/', SampleID.toString(), '_', i.toString(), '.csv']
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         header: true,
                         dynamicTyping: true,
                         complete: function(results) {
-                            Marker_Data.push(results)
+                            Marker_Data[0] = results
                             if (Marker_Data.length == 3) {
                                 drawImage()
                             }
