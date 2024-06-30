@@ -3,16 +3,9 @@ const ShowButton = document.getElementById('show-button')
 const LastButton = document.getElementById('last-button')
 const NextButton = document.getElementById('next-button')
 const Canvas = document.getElementById('chart')
-const ImageLayer = Canvas.getContext('2d')
+const Chart = Canvas.getContext('2d')
 
-var LineLayer
 var ToggleButton
-var LineLayers = []
-for (let i = 0; i < 10; i++) {
-    LineLayer = Canvas.getContext('2d')
-    LineLayers.push(LineLayer)
-}
-
 var SampleID = 1
 var FileName
 var ImageName
@@ -54,28 +47,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function drawLines(line_id) {
+    function drawLines() {
         SampleID = parseInt(NumberInput.value)
+        Chart.restore()
         
         for (let i = 0; i < 10; i++) {
-            if (line_id == -1 || line_id == i) {
-                LineLayers[i].clearRect(0, 0, Canvas.width, Canvas.height)
-                Marker_ID = Marker_Switch[i]
-                if (Marker_ID >= 0) {
-                    LineData = Marker_Data[Marker_ID].data
-                    
-                    LineLayer.beginPath()
-                    x = LineData[0]['x'] / 914 * Canvas.width
-                    y = LineData[0]['L'+(i+1).toString()] / 665 * Canvas.height
-                    LineLayer.moveTo(x, y)
-                    for (let j = 1; j < LineData.length; j++) {
-                        x = LineData[j]['x'] / 914 * Canvas.width
-                        y = LineData[j]['L'+(i+1).toString()] / 665 * Canvas.height
-                        LineLayer.lineTo(x, y)
-                    }
-                    LineLayer.strokeStyle = LineColors[i]
-                    LineLayer.stroke()
+            Marker_ID = Marker_Switch[i]
+            if (Marker_ID >= 0) {
+                LineData = Marker_Data[Marker_ID].data
+                
+                Chart.beginPath()
+                x = LineData[0]['x'] / 914 * Canvas.width
+                y = LineData[0]['L'+(i+1).toString()] / 665 * Canvas.height
+                Chart.moveTo(x, y)
+                for (let j = 1; j < LineData.length; j++) {
+                    x = LineData[j]['x'] / 914 * Canvas.width
+                    y = LineData[j]['L'+(i+1).toString()] / 665 * Canvas.height
+                    Chart.lineTo(x, y)
                 }
+                Chart.strokeStyle = LineColors[i]
+                Chart.stroke()
             }
         }
     }
@@ -85,13 +76,14 @@ document.addEventListener('DOMContentLoaded', () => {
         Image_Path = ['image/', SampleID.toString(), '.png']
         ImageName = Image_Path.join('')
         
-        ImageLayer.clearRect(0, 0, Canvas.width, Canvas.height)
+        Chart.clearRect(0, 0, Canvas.width, Canvas.height)
         
         var RetinaImage = new Image()
         RetinaImage.src = ImageName
         
         RetinaImage.onload = () => {
-            ImageLayer.drawImage(RetinaImage, 0, 0, Canvas.width, Canvas.height)
+            Chart.drawImage(RetinaImage, 0, 0, Canvas.width, Canvas.height)
+            Chart.save()
             drawLines(-1)
         }
     }
