@@ -12,7 +12,7 @@ var ImageName
 var RetinaImage
 var Marker_ID
 var Marker_Data = []
-var Marker_Switch = [1, 0, 1, 0, 1, 0, 0, 0, 0, 0]
+var Marker_Switch = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
 var LineData
 var x
 var y
@@ -53,8 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         for (let i = 0; i < 10; i++) {
             Marker_ID = Marker_Switch[i]
-            if (Marker_ID > 0) {
-                LineData = Marker_Data[Marker_ID-1].data
+            if (Marker_ID >= 0) {
+                LineData = Marker_Data[Marker_ID].data
                 
                 RetinaChart.beginPath();
                 x = LineData[0]['x'] / 914 * Canvas.width
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ToggleButton = document.getElementById('button_' + marker_id.toString() + layer_id.toString());
         
         if (Marker_Switch[layer_id] == marker_id) {
-            Marker_Switch[layer_id] = 0
+            Marker_Switch[layer_id] = -1
             ToggleButton.innerHTML = "off"
             ToggleButton.style.backgroundColor ='#F0F0F0';
         } else {
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
         drawImage();
     };
 
-    for (let marker_id = 1; marker_id < 4; marker_id++) {
+    for (let marker_id = 0; marker_id < 3; marker_id++) {
         for (let layer_id = 0; layer_id < 10; layer_id++) {
             ToggleButton = document.getElementById('button_' + marker_id.toString() + layer_id.toString());
             ToggleButton.addEventListener('click', () => {
