@@ -59,12 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 LineData = Marker_Data[Marker_ID].data
                 
                 LineLayer.beginPath()
-                x = LineData[0]['x'] / 914 * Canvas.width
-                y = LineData[0]['L'+(i+1).toString()] / 665 * Canvas.height
+                x = LineData[0]['x'] / 914 * LineCanvas.width
+                y = LineData[0]['L'+(i+1).toString()] / 665 * LineCanvas.height
                 LineLayer.moveTo(x, y)
                 for (let j = 1; j < LineData.length; j++) {
-                    x = LineData[j]['x'] / 914 * Canvas.width
-                    y = LineData[j]['L'+(i+1).toString()] / 665 * Canvas.height
+                    x = LineData[j]['x'] / 914 * LineCanvas.width
+                    y = LineData[j]['L'+(i+1).toString()] / 665 * LineCanvas.height
                     LineLayer.lineTo(x, y)
                 }
                 LineLayer.strokeStyle = LineColors[i]
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         RetinaImage.src = ImageName
         
         RetinaImage.onload = () => {
-            ImageLayer.drawImage(RetinaImage, 0, 0, Canvas.width, Canvas.height)
+            ImageLayer.drawImage(RetinaImage, 0, 0, ImageCanvas.width, ImageCanvas.height)
             drawLines()
         }
     }
