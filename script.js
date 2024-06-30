@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
         SampleID = parseInt(NumberInput.value)
         if (!(SampleID in Marker_Data)) {
             Marker_Data[SampleID] = {}
-            for (let i = 1; i < 4; i++) {
-                File_Path = ['csv/', SampleID.toString(), '_', i.toString(), '.csv']
+            for (let i = 0; i < 3; i++) {
+                File_Path = ['csv/', SampleID.toString(), '_', (i+1).toString(), '.csv']
                 FileName = File_Path.join('')
                 
                 fetch(FileName)
