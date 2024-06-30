@@ -187,31 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ToggleButton.innerHTML = "off"
             ToggleButton.style.color = '#000000'
             ToggleButton.style.backgroundColor = '#F0F0F0'
-        } else {
-            for (let i = 0; i < 3; i++) {
-                OtherButton = document.getElementById('button_' + i.toString() + line_id.toString())
-                OtherButton.innerHTML = "off"
-                OtherButton.style.color = '#000000'
-                OtherButton.style.backgroundColor = '#F0F0F0'
-            }
-            
-            Marker_Switch[line_id] = marker_id
-            ToggleButton.innerHTML = "on"
-            ToggleButton.style.color = '#FFFFFF'
-            ToggleButton.style.backgroundColor = '#00A2E8'
-        }
-        
-        drawLines()
-    }
-
-    const ToggleHover = (marker_id, line_id) => {
-        ToggleButton = document.getElementById('button_' + marker_id.toString() + line_id.toString())
-        
-        if (Marker_Switch[line_id] == marker_id) {
-            Marker_Switch[line_id] = -1
-            ToggleButton.innerHTML = "off"
-            ToggleButton.style.color = '#000000'
-            ToggleButton.style.backgroundColor = '#F0F0F0'
 
             result_cell = document.getElementById('l' + line_id.toString() + '_marker')
             result_cell.innerHTML = ""
@@ -230,6 +205,31 @@ document.addEventListener('DOMContentLoaded', () => {
             
             result_cell = document.getElementById('l' + line_id.toString() + '_marker')
             result_cell.innerHTML = (marker_id+1).toString()
+        }
+        
+        drawLines()
+    }
+
+    const ToggleHover = (marker_id, line_id) => {
+        ToggleButton = document.getElementById('button_' + marker_id.toString() + line_id.toString())
+        
+        if (Marker_Switch[line_id] == marker_id) {
+            Marker_Switch[line_id] = -1
+            ToggleButton.innerHTML = "off"
+            ToggleButton.style.color = '#000000'
+            ToggleButton.style.backgroundColor = '#F0F0F0'
+        } else {
+            for (let i = 0; i < 3; i++) {
+                OtherButton = document.getElementById('button_' + i.toString() + line_id.toString())
+                OtherButton.innerHTML = "off"
+                OtherButton.style.color = '#000000'
+                OtherButton.style.backgroundColor = '#F0F0F0'
+            }
+            
+            Marker_Switch[line_id] = marker_id
+            ToggleButton.innerHTML = "on"
+            ToggleButton.style.color = '#FFFFFF'
+            ToggleButton.style.backgroundColor = '#00A2E8'
         }
         
         drawLines()
