@@ -60,16 +60,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     LastButton.addEventListener('click', () => {
-        new_value = parseInt(NumberInput.value) - 1;
-        new_value = Math.max(new_value, 1)
-        NumberInput.value = new_value
+        new_SampleID = parseInt(NumberInput.value) - 1;
+        new_SampleID = Math.max(new_SampleID, 1)
+        NumberInput.value = new_SampleID
         fetch_CSV()
     });
 
     NextButton.addEventListener('click', () => {
-        new_value = parseInt(NumberInput.value) + 1;
-        new_value = Math.min(new_value, 80)
-        NumberInput.value = new_value
+        new_SampleID = parseInt(NumberInput.value) + 1;
+        new_SampleID = Math.min(new_SampleID, 80)
+        NumberInput.value = new_SampleID
         fetch_CSV()
     });
 
