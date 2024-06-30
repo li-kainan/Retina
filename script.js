@@ -124,8 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const ToggleSwitch = (marker_id, line_id) => {
         ToggleButton = document.getElementById('button_' + marker_id.toString() + line_id.toString())
         
-        if (Marker_Switch[layer_id] == marker_id) {
-            Marker_Switch[layer_id] = -1
+        if (Marker_Switch[line_id] == marker_id) {
+            Marker_Switch[line_id] = -1
             ToggleButton.innerHTML = "off"
             ToggleButton.style.color = '#000000'
             ToggleButton.style.backgroundColor = '#F0F0F0'
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 OtherButton.style.backgroundColor = '#F0F0F0'
             }
             
-            Marker_Switch[layer_id] = marker_id
+            Marker_Switch[line_id] = marker_id
             ToggleButton.innerHTML = "on"
             ToggleButton.style.color = '#FFFFFF'
             ToggleButton.style.backgroundColor = '#00A2E8'
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     for (let marker_id = 0; marker_id < 3; marker_id++) {
-        for (let line_id = 0; layer_id < 10; layer_id++) {
+        for (let line_id = 0; line_id < 10; line_id++) {
             ToggleButton = document.getElementById('button_' + marker_id.toString() + line_id.toString())
             ToggleButton.innerHTML = "off"
             ToggleButton.style.color = '#000000'
