@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     NextButton.addEventListener('click', () => {
         new_value = parseInt(NumberInput.value) + 1;
-        new_value = Math.min(new_value, 84)
+        new_value = Math.min(new_value, 80)
         NumberInput.value = new_value
         fetch_CSV()
     });
