@@ -1,15 +1,15 @@
+const NumberInput = document.getElementById('number-input');
+const ShowButton = document.getElementById('show-button');
+const LastButton = document.getElementById('last-button');
+const NextButton = document.getElementById('next-button');
+var SampleID = 1
+var Marker_ID
+var Marker_Data = []
+var Marker_Switch = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+var Canvas
+var Chart
+
 document.addEventListener('DOMContentLoaded', () => {
-    const NumberInput = document.getElementById('number-input');
-    const ShowButton = document.getElementById('show-button');
-    const LastButton = document.getElementById('last-button');
-    const NextButton = document.getElementById('next-button');
-    var SampleID = 1
-    var Marker_ID
-    var Marker_Data = []
-    var Marker_Switch = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    var Canvas
-    var Chart
-    
     const fetch_CSV = () => {
         SampleID = parseInt(NumberInput.value)
         Marker_Data = []
@@ -26,6 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         dynamicTyping: true,
                         complete: function(results) {
                             Marker_Data.push(results)
+                            if (i == 3) {
+                                console.log(Marker_Switch)
+                                console.log(Marker_Data)
+                            }
                         }
                     });
                 });
