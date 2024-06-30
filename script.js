@@ -19,6 +19,7 @@ var x
 var y
 
 document.addEventListener('DOMContentLoaded', () => {
+    
     const fetch_CSV = () => {
         SampleID = parseInt(NumberInput.value)
         Marker_Data = []
@@ -143,6 +144,10 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let marker_id = 0; marker_id < 3; marker_id++) {
         for (let layer_id = 0; layer_id < 10; layer_id++) {
             ToggleButton = document.getElementById('button_' + marker_id.toString() + layer_id.toString())
+            ToggleButton.innerHTML = "off"
+            ToggleButton.style.color = '#000000'
+            ToggleButton.style.backgroundColor = '#F0F0F0'
+            
             ToggleButton.addEventListener('click', () => {
                 ToggleSwitch(marker_id, layer_id)
             })
