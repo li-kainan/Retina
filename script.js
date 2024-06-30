@@ -13,6 +13,7 @@ var RetinaImage
 var Marker_ID
 var Marker_Data = []
 var Marker_Switch = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+const LineColors = ['#E6B0AA', '#D7BDE2', '#A9CCE3', '#A3E4D7', '#F9E79F', '#E74C3C', '#8E44AD', '#3498DB', '#2ECC71', '#F39C12']
 var LineData
 var x
 var y
@@ -65,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     y = LineData[j]['L'+(i+1).toString()] / 665 * Canvas.height
                     RetinaChart.lineTo(x, y)
                 }
-                RetinaChart.strokeStyle = 'red'
+                RetinaChart.strokeStyle = LineColors[i]
                 RetinaChart.stroke()
             }
         }
