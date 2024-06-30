@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             dynamicTyping: true,
                             complete: function(results) {
                                 Marker_Data[SampleID][i] = results
-                                if (Marker_Data[SampleID].length == 3) {
+                                if (Object.keys(Marker_Data[SampleID]).length == 3) {
                                     console.log(Marker_Data)
                                     drawImage()
                                 }
