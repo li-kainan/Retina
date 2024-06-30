@@ -2,8 +2,10 @@ const NumberInput = document.getElementById('number-input')
 const ShowButton = document.getElementById('show-button')
 const LastButton = document.getElementById('last-button')
 const NextButton = document.getElementById('next-button')
-const Canvas = document.getElementById('chart')
-const Chart = Canvas.getContext('2d')
+const ImageCanvas = document.getElementById('image_layer')
+const ImageLayer = Canvas.getContext('2d')
+const LineCanvas = document.getElementById('line_layer')
+const LineLayer = Canvas.getContext('2d')
 
 var ToggleButton
 var SampleID = 1
@@ -49,24 +51,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function drawLines() {
         SampleID = parseInt(NumberInput.value)
-        Chart.restore()
+        LineLayer.clearRect(0, 0, LineCanvas.width, LineCanvas.height)
         
         for (let i = 0; i < 10; i++) {
             Marker_ID = Marker_Switch[i]
             if (Marker_ID >= 0) {
                 LineData = Marker_Data[Marker_ID].data
                 
-                Chart.beginPath()
+                LineLayer.beginPath()
                 x = LineData[0]['x'] / 914 * Canvas.width
                 y = LineData[0]['L'+(i+1).toString()] / 665 * Canvas.height
-                Chart.moveTo(x, y)
+                LineLayer.moveTo(x, y)
                 for (let j = 1; j < LineData.length; j++) {
                     x = LineData[j]['x'] / 914 * Canvas.width
                     y = LineData[j]['L'+(i+1).toString()] / 665 * Canvas.height
-                    Chart.lineTo(x, y)
+                    LineLayer.lineTo(x, y)
                 }
-                Chart.strokeStyle = LineColors[i]
-                Chart.stroke()
+                LineLayer.strokeStyle = LineColors[i]
+                LineLayer.stroke()
             }
         }
     }
@@ -76,14 +78,13 @@ document.addEventListener('DOMContentLoaded', () => {
         Image_Path = ['image/', SampleID.toString(), '.png']
         ImageName = Image_Path.join('')
         
-        Chart.clearRect(0, 0, Canvas.width, Canvas.height)
+        ImageLayer.clearRect(0, 0, ImageCanvas.width, ImageCanvas.height)
         
         var RetinaImage = new Image()
         RetinaImage.src = ImageName
         
         RetinaImage.onload = () => {
-            Chart.drawImage(RetinaImage, 0, 0, Canvas.width, Canvas.height)
-            Chart.save()
+            ImageLayer.drawImage(RetinaImage, 0, 0, Canvas.width, Canvas.height)
             drawLines()
         }
     }
