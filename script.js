@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 RetinaChart.beginPath();
                 RetinaChart.moveTo(0,0);
                 for (let j = 0; j < LineData.length; j++) {
-                    RetinaChart.lineTo(LineData['x'], LineData['L'+(i+1).toString());
+                    RetinaChart.lineTo(LineData['x'], LineData['L'+(i+1).toString()]);
                 }
                 RetinaChart.strokeStyle = 'red';
                 RetinaChart.stroke();
