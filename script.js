@@ -50,9 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 LineData = Marker_Data[Marker_ID-1].data
                 
                 RetinaChart.beginPath();
-                RetinaChart.moveTo(0,0);
-                for (let j = 0; j < LineData.length; j++) {
-                    RetinaChart.lineTo(LineData['x'], LineData['L'+(i+1).toString()]);
+                RetinaChart.moveTo(LineData[0]['x'], LineData[0]['L'+(i+1).toString()]);
+                for (let j = 1; j < LineData.length; j++) {
+                    RetinaChart.lineTo(LineData[j]['x'], LineData[j]['L'+(i+1).toString()]);
                 }
                 RetinaChart.strokeStyle = 'red';
                 RetinaChart.stroke();
