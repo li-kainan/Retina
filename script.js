@@ -56,25 +56,25 @@ document.addEventListener('DOMContentLoaded', () => {
     
         
     ShowButton.addEventListener('click', () => {
-        fetch_CSV()
+        update()
     });
     
     LastButton.addEventListener('click', () => {
         new_SampleID = parseInt(NumberInput.value) - 1;
         new_SampleID = Math.max(new_SampleID, 1)
         NumberInput.value = new_SampleID
-        fetch_CSV()
+        update()
     });
 
     NextButton.addEventListener('click', () => {
         new_SampleID = parseInt(NumberInput.value) + 1;
         new_SampleID = Math.min(new_SampleID, 80)
         NumberInput.value = new_SampleID
-        fetch_CSV()
+        update()
     });
 
     // Initial fetch
-    fetch_CSV()
+    update()
 
     function drawLines() {
         var Canvas = document.getElementById('chart')
