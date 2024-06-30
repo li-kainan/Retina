@@ -85,8 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
         Image_Path = ['image/', SampleID.toString(), '.png']
         ImageName = Image_Path.join('')
         
-        const Canvas = document.getElementById('chart')
-        const ImageLayer = Canvas.getContext('2d')
         ImageLayer.clearRect(0, 0, Canvas.width, Canvas.height)
         
         var RetinaImage = new Image()
