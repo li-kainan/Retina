@@ -15,7 +15,6 @@ var RetinaImage
 var Marker_ID
 var Marker_Data = []
 var Marker_Switch = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
-var Marker_Hover = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
 const LineColors = ['#E6B0AA', '#D7BDE2', '#A9CCE3', '#A3E4D7', '#F9E79F', '#E74C3C', '#8E44AD', '#3498DB', '#2ECC71', '#F39C12']
 var LineData
 var x
@@ -77,11 +76,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function drawLines_hover(marker_id, line_id) {
         SampleID = parseInt(NumberInput.value)
         LineLayer.clearRect(0, 0, LineCanvas.width, LineCanvas.height)
-        Marker_Hover = Marker_Switch
-        Marker_Hover[line_id] = marker_id
         
         for (let i = 0; i < 10; i++) {
-            Marker_ID = Marker_Hover[i]
+            if (i == line_id) {
+                Marker_ID = marker_id
+            } else {
+                Marker_ID = Marker_Switch[i]
+            }
+            
             if (Marker_ID >= 0) {
                 LineData = Marker_Data[Marker_ID].data
                 
