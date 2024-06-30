@@ -120,9 +120,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (Marker_Switch[layer_id] == marker_id) {
             Marker_Switch[layer_id] = 0
             ToggleButton.innerHTML = "off"
+            ToggleButton.style.backgroundColor ='#F0F0F0';
         } else {
             Marker_Switch[layer_id] = marker_id
             ToggleButton.innerHTML = "on"
+            ToggleButton.style.backgroundColor ='#00A2E8';
         }
         
         drawImage();
