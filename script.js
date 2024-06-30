@@ -14,7 +14,7 @@ var FileName
 var ImageName
 var RetinaImage
 var Marker_ID
-var Marker_Data = [null, null, null]
+var Marker_Data = {}
 var Marker_Switch = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
 const LineColors = ['#E6B0AA', '#D7BDE2', '#A9CCE3', '#A3E4D7', '#F9E79F', '#E74C3C', '#8E44AD', '#3498DB', '#2ECC71', '#F39C12']
 var LineData
@@ -25,26 +25,28 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const fetch_CSV = () => {
         SampleID = parseInt(NumberInput.value)
-        Marker_Data = [null, null, null]
-
-        for (let i = 1; i < 4; i++) {
-            File_Path = ['csv/', SampleID.toString(), '_', i.toString(), '.csv']
-            FileName = File_Path.join('')
-            
-            fetch(FileName)
-                .then(response => response.text())
-                .then(data => {
-                    Papa.parse(data, {
-                        header: true,
-                        dynamicTyping: true,
-                        complete: function(results) {
-                            Marker_Data[i] = results
-                            if (Marker_Data.length == 3) {
-                                drawImage()
+        if (!(Marker_Data.includes(SampleID))) {
+            Marker_Data[SampleID] = {}
+            for (let i = 1; i < 4; i++) {
+                File_Path = ['csv/', SampleID.toString(), '_', i.toString(), '.csv']
+                FileName = File_Path.join('')
+                
+                fetch(FileName)
+                    .then(response => response.text())
+                    .then(data => {
+                        Papa.parse(data, {
+                            header: true,
+                            dynamicTyping: true,
+                            complete: function(results) {
+                                Marker_Data[SampleID][i] = results
+                                if (Marker_Data[SampleID].length == 3) {
+                                    console.log(Marker_Data)
+                                    drawImage()
+                                }
                             }
-                        }
+                        })
                     })
-                })
+            }
         }
     }
 
@@ -55,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < 10; i++) {
             Marker_ID = Marker_Switch[i]
             if (Marker_ID >= 0) {
-                LineData = Marker_Data[Marker_ID].data
+                LineData = Marker_Data[SampleID][Marker_ID].data
                 
                 LineLayer.beginPath()
                 x = LineData[0]['x'] / 914 * LineCanvas.width
@@ -84,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             if (Marker_ID >= 0) {
-                LineData = Marker_Data[Marker_ID].data
+                LineData = Marker_Data[SampleID][Marker_ID].data
                 
                 LineLayer.beginPath()
                 x = LineData[0]['x'] / 914 * LineCanvas.width
