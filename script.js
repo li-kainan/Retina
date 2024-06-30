@@ -56,8 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 RetinaChart.strokeStyle = 'red';
                 RetinaChart.stroke();
-
-                console.log('draw line');
             }
         }
     }
