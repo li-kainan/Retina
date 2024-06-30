@@ -24,9 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         dynamicTyping: true,
                         complete: function(results) {
                             Marker_Data.push(results)
-                            if (i == 3) {
-                                update();
-                            }
                         }
                     });
                 });
@@ -49,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         RetinaImage.onload = () => {
             // Draw the image onto the imageCanvas
             RetinaChart.drawImage(RetinaImage, 0, 0, Canvas.width, Canvas.height);
+            fetch_CSV();
             drawLines();
         };
     }
