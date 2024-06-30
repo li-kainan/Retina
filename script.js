@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         for (let i = 0; i < 10; i++) {
             if (line_id == -1 || line_id == i) {
-                LineLayers[line_id].clearRect(0, 0, Canvas.width, Canvas.height)
+                LineLayers[i].clearRect(0, 0, Canvas.width, Canvas.height)
                 Marker_ID = Marker_Switch[i]
                 if (Marker_ID >= 0) {
                     LineData = Marker_Data[Marker_ID].data
