@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         SampleID = parseInt(NumberInput.value)
         
         for (let i = 0; i < 10; i++) {
-            if (line_id == -1 or line_id == i) {
+            if (line_id == -1 || line_id == i) {
                 ImageLayers[line_id].clearRect(0, 0, Canvas.width, Canvas.height)
                 Marker_ID = Marker_Switch[i]
                 if (Marker_ID >= 0) {
