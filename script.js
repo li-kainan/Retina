@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const fetch_CSV = () => {
         SampleID = parseInt(NumberInput.value)
-        if (!(Marker_Data.includes(SampleID))) {
+        if (!(SampleID in Marker_Data)) {
             Marker_Data[SampleID] = {}
             for (let i = 1; i < 4; i++) {
                 File_Path = ['csv/', SampleID.toString(), '_', i.toString(), '.csv']
