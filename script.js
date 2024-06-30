@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         header: true,
                         dynamicTyping: true,
                         complete: function(results) {
-                            Marker_Data[0] = results
+                            Marker_Data[i] = results
                             if (Marker_Data.length == 3) {
                                 drawImage()
                             }
