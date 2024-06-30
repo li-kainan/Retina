@@ -4,7 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const LastButton = document.getElementById('last-button');
     const NextButton = document.getElementById('next-button');
     var SampleID = 1
-    var Marker_Data
+    var Marker_ID
+    var Marker_Data = []
+    var Marker_Switch = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     var Canvas
     var Chart
     
@@ -30,11 +32,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    function drawLines() {
+        const Canvas = document.getElementById('chart')
+        const RetinaChart = Canvas.getContext('2d');
+        
+        SampleID = parseInt(NumberInput.value)
+        
+        for (let i = 0; i < 10; i++) {
+            Marker_ID = Marker_Switch[i]
+            if (Marker_ID > 0) {
+                Marker_ID = Marker_ID
+            }
+        }
+        
+        /*
+        RetinaChart.beginPath();
+        RetinaChart.moveTo(0,0);
+        RetinaChart.lineTo(100 * (2+ValueIn), 100 * (1+ValueIn));
+        RetinaChart.strokeStyle = 'red';
+        RetinaChart.stroke();
+        */
+    }
+    
     const drawImage = () => {
         SampleID = parseInt(NumberInput.value)
         image_path = ['image/', SampleID.toString(), '.png']
         var ImageName = image_path.join('');
-        console.log(ImageName)
         
         const Canvas = document.getElementById('chart')
         const RetinaChart = Canvas.getContext('2d');
@@ -47,13 +70,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // Draw the image onto the imageCanvas
             RetinaChart.drawImage(RetinaImage, 0, 0, Canvas.width, Canvas.height);
             fetch_CSV();
-            drawLines();
+            // drawLines();
         };
     }
+    
     const update = () => {
         drawImage()
     }
-    
         
     ShowButton.addEventListener('click', () => {
         update()
@@ -76,20 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial fetch
     update()
 
-    function drawLines() {
-        const Canvas = document.getElementById('chart')
-        const RetinaChart = Canvas.getContext('2d');
-
-        SampleID = parseInt(NumberInput.value)
-
-        /*
-        RetinaChart.beginPath();
-        RetinaChart.moveTo(0,0);
-        RetinaChart.lineTo(100 * (2+ValueIn), 100 * (1+ValueIn));
-        RetinaChart.strokeStyle = 'red';
-        RetinaChart.stroke();
-        */
-    }
 
     
 });
