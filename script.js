@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         dynamicTyping: true,
                         complete: function(results) {
                             Marker_Data.push(results)
-                            if (i == 3) {
+                            if (i = 3) {
                                 console.log(Marker_Switch)
                                 console.log(Marker_Data)
                                 drawLines();
