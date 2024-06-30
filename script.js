@@ -5,7 +5,8 @@ const NextButton = document.getElementById('next-button');
 var SampleID = 1
 var Marker_ID
 var Marker_Data = []
-var Marker_Switch = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+var Marker_Switch = [1, 0, 1, 0, 1, 0, 0, 0, 0, 0]
+var LineData
 var Canvas
 var Chart
 
@@ -29,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (i == 3) {
                                 console.log(Marker_Switch)
                                 console.log(Marker_Data)
+                                drawLines();
                             }
                         }
                     });
@@ -45,17 +47,17 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < 10; i++) {
             Marker_ID = Marker_Switch[i]
             if (Marker_ID > 0) {
-                Marker_ID = Marker_ID
+                LineData = Marker_Data[Marker_ID-1].data
+                
+                RetinaChart.beginPath();
+                RetinaChart.moveTo(0,0);
+                for (let j == 0; j < LineData.length; j++) {
+                    RetinaChart.lineTo(LineData['x'], LineData['L'+(i+1).toString());
+                }
+                RetinaChart.strokeStyle = 'red';
+                RetinaChart.stroke();
             }
         }
-        
-        /*
-        RetinaChart.beginPath();
-        RetinaChart.moveTo(0,0);
-        RetinaChart.lineTo(100 * (2+ValueIn), 100 * (1+ValueIn));
-        RetinaChart.strokeStyle = 'red';
-        RetinaChart.stroke();
-        */
     }
     
     const drawImage = () => {
@@ -71,7 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
         RetinaImage.src = ImageName;
         
         RetinaImage.onload = () => {
-            // Draw the image onto the imageCanvas
             RetinaChart.drawImage(RetinaImage, 0, 0, Canvas.width, Canvas.height);
             fetch_CSV();
             // drawLines();
