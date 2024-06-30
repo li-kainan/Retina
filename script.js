@@ -36,11 +36,11 @@ document.addEventListener('DOMContentLoaded', () => {
         var ImageName = image_path.join('');
         console.log(ImageName)
         
-        var Canvas = document.getElementById('chart')
-        var RetinaChart = Canvas.getContext('2d');
+        const Canvas = document.getElementById('chart')
+        const RetinaChart = Canvas.getContext('2d');
         RetinaChart.clearRect(0, 0, Canvas.width, Canvas.height);
         
-        const RetinaImage = new Image();
+        var RetinaImage = new Image();
         RetinaImage.src = ImageName;
         
         RetinaImage.onload = () => {
@@ -77,8 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
     update()
 
     function drawLines() {
-        var Canvas = document.getElementById('chart')
-        var RetinaChart = Canvas.getContext('2d');
+        const Canvas = document.getElementById('chart')
+        const RetinaChart = Canvas.getContext('2d');
 
         SampleID = parseInt(NumberInput.value)
 
