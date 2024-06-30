@@ -118,7 +118,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
+    const Reset_ToggleSwitch = () => {
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 10; j++) {
+                OtherButton = document.getElementById('button_' + i.toString() + j.toString())
+                OtherButton.innerHTML = "off"
+                OtherButton.style.color = '#000000'
+                OtherButton.style.backgroundColor = '#F0F0F0'
+            }
+        }
+    }
+    
     const update = () => {
+        Marker_Switch = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+        Reset_ToggleSwitch()
         fetch_CSV()
     }
         
@@ -142,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial fetch
     update()
-
+    
     const ToggleSwitch = (marker_id, line_id) => {
         ToggleButton = document.getElementById('button_' + marker_id.toString() + line_id.toString())
         
