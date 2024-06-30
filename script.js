@@ -3,9 +3,9 @@ const ShowButton = document.getElementById('show-button')
 const LastButton = document.getElementById('last-button')
 const NextButton = document.getElementById('next-button')
 const ImageCanvas = document.getElementById('image_layer')
-const ImageLayer = Canvas.getContext('2d')
+const ImageLayer = ImageCanvas.getContext('2d')
 const LineCanvas = document.getElementById('line_layer')
-const LineLayer = Canvas.getContext('2d')
+const LineLayer = LineCanvas.getContext('2d')
 
 var ToggleButton
 var SampleID = 1
