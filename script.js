@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         RetinaImage.onload = () => {
             Chart.drawImage(RetinaImage, 0, 0, Canvas.width, Canvas.height)
             Chart.save()
-            drawLines(-1)
+            drawLines()
         }
     }
     
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ToggleButton.style.backgroundColor = '#00A2E8'
         }
         
-        drawLines(line_id)
+        drawLines()
     }
 
     for (let marker_id = 0; marker_id < 3; marker_id++) {
