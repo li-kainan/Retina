@@ -40,8 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         complete: function(results) {
                             Marker_Data.push(results)
                             if (Marker_Data.length == 3) {
-                                console.log(Marker_Switch)
-                                console.log(Marker_Data)
                                 drawImage()
                             }
                         }
