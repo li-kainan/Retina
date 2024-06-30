@@ -1,9 +1,10 @@
-const NumberInput = document.getElementById('number-input');
-const ShowButton = document.getElementById('show-button');
-const LastButton = document.getElementById('last-button');
-const NextButton = document.getElementById('next-button');
+const NumberInput = document.getElementById('number-input')
+const ShowButton = document.getElementById('show-button')
+const LastButton = document.getElementById('last-button')
+const NextButton = document.getElementById('next-button')
 const Canvas = document.getElementById('chart')
-const RetinaChart = Canvas.getContext('2d');
+const RetinaChart = Canvas.getContext('2d')
+var ToggleButton
 
 var SampleID = 1
 var FileName
@@ -36,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (Marker_Data.length == 3) {
                                 console.log(Marker_Switch)
                                 console.log(Marker_Data)
-                                drawLines();
+                                drawImage();
                             }
                         }
                     });
@@ -84,13 +85,12 @@ document.addEventListener('DOMContentLoaded', () => {
         
         RetinaImage.onload = () => {
             RetinaChart.drawImage(RetinaImage, 0, 0, Canvas.width, Canvas.height);
-            fetch_CSV();
-            // drawLines();
+            drawLines();
         };
     }
     
     const update = () => {
-        drawImage()
+        fetch_CSV()
     }
         
     ShowButton.addEventListener('click', () => {
@@ -114,6 +114,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial fetch
     update()
 
+    const ToggleSwitch = (marker_id, layer_id) => {
+        ToggleButton = document.getElementById('button_' + marker_id.toString() + layer_id.toString());
+        
+        if (Marker_Switch[layer_id] == marker_id) {
+            Marker_Switch[layer_id] = 0
+            ToggleButton.innerHTML = "off"
+        } else {
+            Marker_Switch[layer_id] = marker_id
+            ToggleButton.innerHTML = "on"
+        }
+        
+        drawImage();
+    };
 
+    for (let marker_id = 1; marker_id < 4; marker_id++) {
+        for (let layer_id = 0; layer_id < 10; layer_id++) {
+            ToggleButton = document.getElementById('button_' + marker_id.toString() + layer_id.toString());
+            ToggleButton.addEventListener('click', () => {
+                ToggleSwitch(marker_id, layer_id)
+            }
+        };
+    };
     
 });
