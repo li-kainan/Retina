@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         dynamicTyping: true,
                         complete: function(results) {
                             Marker_Data.push(results)
-                            if (i = 3) {
+                            if (i == 3) {
                                 console.log(Marker_Switch)
                                 console.log(Marker_Data)
                                 drawLines();
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 RetinaChart.beginPath();
                 RetinaChart.moveTo(0,0);
-                for (let j == 0; j < LineData.length; j++) {
+                for (let j = 0; j < LineData.length; j++) {
                     RetinaChart.lineTo(LineData['x'], LineData['L'+(i+1).toString());
                 }
                 RetinaChart.strokeStyle = 'red';
