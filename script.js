@@ -2,6 +2,7 @@ const NumberInput = document.getElementById('number-input')
 const ShowButton = document.getElementById('show-button')
 const LastButton = document.getElementById('last-button')
 const NextButton = document.getElementById('next-button')
+const ResetButton = document.getElementById('reset-button')
 const ImageCanvas = document.getElementById('image_layer')
 const ImageLayer = ImageCanvas.getContext('2d')
 const LineCanvas = document.getElementById('line_layer')
@@ -173,6 +174,11 @@ document.addEventListener('DOMContentLoaded', () => {
             Marker_Switch = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
         }
         NumberInput.value = new_SampleID
+        update()
+    })
+
+    ResetButton.addEventListener('click', () => {
+        Marker_Switch = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
         update()
     })
 
