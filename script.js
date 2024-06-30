@@ -60,8 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 y = LineData[0]['L'+(i+1).toString()] / 665 * Canvas.height
                 RetinaChart.moveTo(x, y);
                 for (let j = 1; j < LineData.length; j++) {
-                    x = LineData[0]['x'] / 914 * Canvas.width
-                    y = LineData[0]['L'+(i+1).toString()] / 665 * Canvas.height
+                    x = LineData[j]['x'] / 914 * Canvas.width
+                    y = LineData[j]['L'+(i+1).toString()] / 665 * Canvas.height
                     RetinaChart.lineTo(x, y);
                 }
                 RetinaChart.strokeStyle = 'red';
