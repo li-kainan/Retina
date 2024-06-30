@@ -2,13 +2,19 @@ const NumberInput = document.getElementById('number-input');
 const ShowButton = document.getElementById('show-button');
 const LastButton = document.getElementById('last-button');
 const NextButton = document.getElementById('next-button');
+const Canvas = document.getElementById('chart')
+const RetinaChart = Canvas.getContext('2d');
+
 var SampleID = 1
+var FileName
+var ImageName
+var RetinaImage
 var Marker_ID
 var Marker_Data = []
 var Marker_Switch = [1, 0, 1, 0, 1, 0, 0, 0, 0, 0]
 var LineData
-var Canvas
-var Chart
+var x
+var y
 
 document.addEventListener('DOMContentLoaded', () => {
     const fetch_CSV = () => {
@@ -17,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         for (let i = 1; i < 4; i++) {
             FileName_path = ['csv/', SampleID.toString(), '_', i.toString(), '.csv']
-            var FileName = FileName_path.join('');
+            FileName = FileName_path.join('');
             
             fetch(FileName)
                 .then(response => response.text())
@@ -50,9 +56,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 LineData = Marker_Data[Marker_ID-1].data
                 
                 RetinaChart.beginPath();
-                RetinaChart.moveTo(LineData[0]['x'], LineData[0]['L'+(i+1).toString()]);
+                x = LineData[0]['x'] / 914 * Canvas.width
+                y = LineData[0]['L'+(i+1).toString()] / 665 * Canvas.height
+                RetinaChart.moveTo(x, y);
                 for (let j = 1; j < LineData.length; j++) {
-                    RetinaChart.lineTo(LineData[j]['x'], LineData[j]['L'+(i+1).toString()]);
+                    x = LineData[0]['x'] / 914 * Canvas.width
+                    y = LineData[0]['L'+(i+1).toString()] / 665 * Canvas.height
+                    RetinaChart.lineTo(x, y);
                 }
                 RetinaChart.strokeStyle = 'red';
                 RetinaChart.stroke();
@@ -63,13 +73,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const drawImage = () => {
         SampleID = parseInt(NumberInput.value)
         image_path = ['image/', SampleID.toString(), '.png']
-        var ImageName = image_path.join('');
+        ImageName = image_path.join('');
         
         const Canvas = document.getElementById('chart')
         const RetinaChart = Canvas.getContext('2d');
         RetinaChart.clearRect(0, 0, Canvas.width, Canvas.height);
         
-        var RetinaImage = new Image();
+        RetinaImage = new Image();
         RetinaImage.src = ImageName;
         
         RetinaImage.onload = () => {
