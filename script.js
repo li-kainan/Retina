@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
         Marker_Data = []
 
         for (let i = 1; i < 4; i++) {
-            FileName_path = ['csv/', SampleID.toString(), '_', i.toString(), '.csv']
-            FileName = FileName_path.join('');
+            File_Path = ['csv/', SampleID.toString(), '_', i.toString(), '.csv']
+            FileName = File_Path.join('');
             
             fetch(FileName)
                 .then(response => response.text())
@@ -72,14 +72,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const drawImage = () => {
         SampleID = parseInt(NumberInput.value)
-        image_path = ['image/', SampleID.toString(), '.png']
-        ImageName = image_path.join('');
+        Image_Path = ['image/', SampleID.toString(), '.png']
+        ImageName = Image_Path.join('');
         
         const Canvas = document.getElementById('chart')
         const RetinaChart = Canvas.getContext('2d');
         RetinaChart.clearRect(0, 0, Canvas.width, Canvas.height);
         
-        RetinaImage = new Image();
+        var RetinaImage = new Image();
         RetinaImage.src = ImageName;
         
         RetinaImage.onload = () => {
