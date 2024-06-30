@@ -118,20 +118,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    const Reset_ToggleSwitch = () => {
-        for (let i = 0; i < 3; i++) {
-            for (let j = 0; j < 10; j++) {
-                OtherButton = document.getElementById('button_' + i.toString() + j.toString())
-                OtherButton.innerHTML = "off"
-                OtherButton.style.color = '#000000'
-                OtherButton.style.backgroundColor = '#F0F0F0'
+    const Reset = () => {
+        result_cell = document.getElementById('case_id')
+        result_cell.innerHTML = parseInt(NumberInput.value).toString()
+        
+        for (let i = 0; i < 10; i++) {
+            result_cell = document.getElementById('L' + i.toString() + '_marker')
+            result_cell.innerHTML = ""
+            
+            for (let j = 0; j < 3; j++) {
+                if (Marker_Switch[i] == j) {
+                    OtherButton = document.getElementById('button_' + j.toString() + i.toString())
+                    OtherButton.innerHTML = "on"
+                    OtherButton.style.color = '#FFFFFF'
+                    OtherButton.style.backgroundColor = '#00A2E8'
+                    result_cell = document.getElementById('L' + i.toString() + '_marker')
+                    result_cell.innerHTML = (j+1).toString()
+                } else {
+                    OtherButton = document.getElementById('button_' + j.toString() + i.toString())
+                    OtherButton.innerHTML = "off"
+                    OtherButton.style.color = '#000000'
+                    OtherButton.style.backgroundColor = '#F0F0F0'
+                }
             }
         }
     }
     
     const update = () => {
         Marker_Switch = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
-        Reset_ToggleSwitch()
+        Reset()
         fetch_CSV()
     }
         
@@ -181,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
         drawLines()
     }
 
-    const ToggleHover= (marker_id, line_id) => {
+    const ToggleHover = (marker_id, line_id) => {
         ToggleButton = document.getElementById('button_' + marker_id.toString() + line_id.toString())
         
         if (Marker_Switch[line_id] == marker_id) {
