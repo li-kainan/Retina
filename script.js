@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     OtherButton.innerHTML = "on"
                     OtherButton.style.color = '#FFFFFF'
                     OtherButton.style.backgroundColor = '#00A2E8'
-                    result_cell = document.getElementById('L' + i.toString() + '_marker')
+                    result_cell = document.getElementById('l' + i.toString() + '_marker')
                     result_cell.innerHTML = (j+1).toString()
                 } else {
                     OtherButton = document.getElementById('button_' + j.toString() + i.toString())
@@ -145,18 +145,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     const update = () => {
-        Marker_Switch = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
         Reset()
         fetch_CSV()
     }
         
     ShowButton.addEventListener('click', () => {
+        if (parseInt(NumberInput.value) != SampleID) {
+            Marker_Switch = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+        }
         update()
     })
     
     LastButton.addEventListener('click', () => {
         new_SampleID = parseInt(NumberInput.value) - 1
         new_SampleID = Math.max(new_SampleID, 1)
+        if (new_SampleID != SampleID) {
+            Marker_Switch = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+        }
         NumberInput.value = new_SampleID
         update()
     })
@@ -164,6 +169,9 @@ document.addEventListener('DOMContentLoaded', () => {
     NextButton.addEventListener('click', () => {
         new_SampleID = parseInt(NumberInput.value) + 1
         new_SampleID = Math.min(new_SampleID, 80)
+        if (new_SampleID != SampleID) {
+            Marker_Switch = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+        }
         NumberInput.value = new_SampleID
         update()
     })
@@ -204,6 +212,9 @@ document.addEventListener('DOMContentLoaded', () => {
             ToggleButton.innerHTML = "off"
             ToggleButton.style.color = '#000000'
             ToggleButton.style.backgroundColor = '#F0F0F0'
+
+            result_cell = document.getElementById('l' + line_id.toString() + '_marker')
+            result_cell.innerHTML = ""
         } else {
             for (let i = 0; i < 3; i++) {
                 OtherButton = document.getElementById('button_' + i.toString() + line_id.toString())
@@ -216,6 +227,9 @@ document.addEventListener('DOMContentLoaded', () => {
             ToggleButton.innerHTML = "on"
             ToggleButton.style.color = '#FFFFFF'
             ToggleButton.style.backgroundColor = '#00A2E8'
+            
+            result_cell = document.getElementById('l' + line_id.toString() + '_marker')
+            result_cell.innerHTML = (marker_id+1).toString()
         }
         
         drawLines()
