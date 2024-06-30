@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ToggleButton = document.getElementById('button_' + marker_id.toString() + layer_id.toString());
             ToggleButton.addEventListener('click', () => {
                 ToggleSwitch(marker_id, layer_id)
-            }
+            });
         };
     };
     
