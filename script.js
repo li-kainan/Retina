@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const drawImage = () => {
         SampleID = parseInt(NumberInput.value)
-        image_path = ['image/', ValueIn.toString(), '.png']
+        image_path = ['image/', SampleID.toString(), '.png']
         var ImageName = image_path.join('');
         console.log(ImageName)
         
