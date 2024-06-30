@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         result_cell.innerHTML = parseInt(NumberInput.value).toString()
         
         for (let i = 0; i < 10; i++) {
-            result_cell = document.getElementById('L' + i.toString() + '_marker')
+            result_cell = document.getElementById('l' + i.toString() + '_marker')
             result_cell.innerHTML = ""
             
             for (let j = 0; j < 3; j++) {
