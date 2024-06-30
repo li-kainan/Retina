@@ -122,12 +122,10 @@ document.addEventListener('DOMContentLoaded', () => {
             ToggleButton.style.color = '#000000'
             ToggleButton.style.backgroundColor = '#F0F0F0'
         } else {
-            for (let i = 0; i < 3; i++) {
-                OtherButton = document.getElementById('button_' + i.toString() + line_id.toString())
-                OtherButton.innerHTML = "off"
-                OtherButton.style.color = '#000000'
-                OtherButton.style.backgroundColor = '#F0F0F0'
-            }
+            OtherButton = document.getElementById('button_' + Marker_Switch[line_id].toString() + line_id.toString())
+            OtherButton.innerHTML = "off"
+            OtherButton.style.color = '#000000'
+            OtherButton.style.backgroundColor = '#F0F0F0'
             
             Marker_Switch[line_id] = marker_id
             ToggleButton.innerHTML = "on"
