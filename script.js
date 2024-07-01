@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
         result_cell.innerHTML = parseInt(NumberInput.value).toString()
         
         for (let i = 0; i < 10; i++) {
-            result_cell = document.getElementById('l' + i.toString() + '_marker')
+            result_cell = document.getElementById('L' + i.toString() + '_Grader')
             result_cell.innerHTML = ""
             
             for (let j = 0; j < 3; j++) {
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     OtherButton.innerHTML = "on"
                     OtherButton.style.color = '#FFFFFF'
                     OtherButton.style.backgroundColor = '#00A2E8'
-                    result_cell = document.getElementById('l' + i.toString() + '_marker')
+                    result_cell = document.getElementById('L' + i.toString() + '_Grader')
                     result_cell.innerHTML = (j+1).toString()
                 } else {
                     OtherButton = document.getElementById('button_' + j.toString() + i.toString())
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ToggleButton.style.color = '#000000'
             ToggleButton.style.backgroundColor = '#F0F0F0'
 
-            result_cell = document.getElementById('l' + line_id.toString() + '_Grader')
+            result_cell = document.getElementById('L' + line_id.toString() + '_Grader')
             result_cell.innerHTML = ""
         } else {
             for (let i = 0; i < 3; i++) {
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ToggleButton.style.color = '#FFFFFF'
             ToggleButton.style.backgroundColor = '#00A2E8'
             
-            result_cell = document.getElementById('l' + line_id.toString() + '_Grader')
+            result_cell = document.getElementById('L' + line_id.toString() + '_Grader')
             result_cell.innerHTML = (marker_id+1).toString()
         }
         
