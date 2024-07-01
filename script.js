@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ToggleButton.style.color = '#000000'
             ToggleButton.style.backgroundColor = '#F0F0F0'
 
-            result_cell = document.getElementById('l' + line_id.toString() + '_marker')
+            result_cell = document.getElementById('l' + line_id.toString() + '_Grader')
             result_cell.innerHTML = ""
         } else {
             for (let i = 0; i < 3; i++) {
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ToggleButton.style.color = '#FFFFFF'
             ToggleButton.style.backgroundColor = '#00A2E8'
             
-            result_cell = document.getElementById('l' + line_id.toString() + '_marker')
+            result_cell = document.getElementById('l' + line_id.toString() + '_Grader')
             result_cell.innerHTML = (marker_id+1).toString()
         }
         
